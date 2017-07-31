@@ -1,0 +1,48 @@
+spring:
+  profiles:
+    active: local
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+server:
+  port: 6000
+  context-path: /order
+management:
+  context-path: /admin
+  port: 6001
+
+api.version: v1
+
+user:
+  context-path: /user
+  version: v1
+product:
+  context-path: /product
+  version: v1
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${observatory.ip}:${observatory.port}/eureka/
+  instance:
+    prefer-ip-address: true
+    status-page-url-path: ${management.context-path}/info
+    health-check-url-path: ${management.context-path}/health
+
+feign:
+  hystrix:
+    enabled: true
+
+---
+spring:
+  profiles: dev
+observatory:
+  ip: 192.168.40.160
+  port: 8761
+---
+spring:
+  profiles: local
+observatory:
+  ip: 192.168.40.155
+  port: 8761
