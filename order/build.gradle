@@ -12,7 +12,7 @@ buildscript {
 	}
 }
 
-group = 'bnp'
+group = 'sajacaros'
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -55,6 +55,7 @@ dependencyManagement {
 task buildDocker(type: Docker, dependsOn: build) {
 	push = false
 	applicationName = jar.baseName
+	tagVersion = jar.version
 	dockerfile = file('src/main/docker/Dockerfile')
 	doFirst {
 		copy {
