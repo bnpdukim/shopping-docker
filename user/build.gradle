@@ -54,7 +54,7 @@ dependencyManagement {
 task buildDocker(type: Docker, dependsOn: build) {
 	push = false
 	applicationName = jar.baseName
-	tagVersion = jar.version
+//	tagVersion = jar.version
 	dockerfile = file('src/main/docker/Dockerfile')
 	doFirst {
 		copy {
