@@ -12,7 +12,7 @@ buildscript {
 	}
 }
 
-group = 'sajacaros'
+group = 'bnpdukim'
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
