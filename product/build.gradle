@@ -63,6 +63,7 @@ task buildDocker(type: Docker, dependsOn: build) {
 		copy {
 			from jar
 			into stageDir
+			rename("${jar.baseName}-${jar.version}.jar", "app.jar")
 		}
 	}
 }

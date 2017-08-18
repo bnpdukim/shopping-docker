@@ -53,13 +53,16 @@ dependencyManagement {
 
 task buildDocker(type: Docker, dependsOn: build) {
 	push = false
-	applicationName = jar.baseName
+	applicationName = jar.baseName  // applicationName = docker image name
 //	tagVersion = jar.version
 	dockerfile = file('src/main/docker/Dockerfile')
 	doFirst {
+
 		copy {
 			from jar
 			into stageDir
+			rename("${jar.baseName}-${jar.version}.jar", "app.jar")
+//			rename(jar, "app.jar")
 		}
 	}
 }
