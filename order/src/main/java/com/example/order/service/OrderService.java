@@ -89,7 +89,7 @@ public interface OrderService {
                     orderDto.setUser(responseEntity.getBody());
                     future.complete(orderDto);
                 } else {
-                    log.warn("user endpoint repsonse is failed.. principalId : {}", orderDto.getOrder().getUserId());
+                    log.warn("user endpoint repsonse is failed.. userId : {}", orderDto.getOrder().getUserId());
                     future.completeExceptionally(new RuntimeException("user 정보 획득 실패"));
                 }
             });

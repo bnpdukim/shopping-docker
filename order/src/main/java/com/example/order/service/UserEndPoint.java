@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @FeignClient(value = "user", fallback = UserFallback.class)
 public interface UserEndPoint {
-    @RequestMapping(method = RequestMethod.GET, value = "/user/api/v1/{principalId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    ResponseEntity<UserDto.Response> userProfile(@PathVariable("principalId") Long principalId);
+    @RequestMapping(method = RequestMethod.GET, value = "/user/api/v1/{userId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    ResponseEntity<UserDto.Response> userProfile(@PathVariable("userId") Long userId);
 }

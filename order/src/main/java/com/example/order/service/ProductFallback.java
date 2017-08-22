@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Component
 public class ProductFallback implements ProductEndPoint{
     @Override
-    public ResponseEntity<ProductDto.Response> product(@PathVariable("productId") Long productId) {
-        log.info("product fallback");
+    public ResponseEntity<ProductDto.Response> product( Long productId) {
+        log.info("product fallback, productId : {}", productId);
 //        return ResponseEntity.notFound().build();
         return ResponseEntity.ok(new ProductDto.Response((long) -1, "", -1));
     }

@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Component
 public class UserFallback implements UserEndPoint{
     @Override
-    public ResponseEntity<UserDto.Response> userProfile(@PathVariable("principalId") Long principalId) {
-        log.info("user fallback");
+    public ResponseEntity<UserDto.Response> userProfile( Long userId ) {
+        log.info("user fallback, userId : {}", userId);
         return ResponseEntity.ok(new UserDto.Response( -1L, "", "", Sex.MALE ));
     }
 }
