@@ -45,8 +45,9 @@ public interface OrderService {
         @Override
         public CompletableFuture<List<OrderDto.Details>> orders() {
              return orderRepository.findAllBy()
-                .thenApply(orders->
-                    orders.stream()
+                .thenApply(orders->{
+                    log.info("orders : {}", orders);
+                    return orders.stream()
                         .map(order->new OrderDto.Details(
                                 order.getId(),
                                 order.getPrincipalId(),
@@ -55,10 +56,10 @@ public interface OrderService {
                         .map(orderDto -> userFuture(orderDto))
                         .map(completableOrderDto-> completableOrderDto.thenCompose(orderDto -> productFuture(orderDto)))
                         .map(CompletableFuture::join)
-                        .filter(d->d.getProduct().getId()!=-1)
-                        .filter(d->d.getUser().getId()!=-1)
-                        .collect(Collectors.toList())
-                );
+                        .filter(d->{log.info("product : {}",d);return d.getProduct().getId()!=-1;})
+                        .filter(u->{log.info("user : {}",u);return u.getUser().getId()!=-1;})
+                        .collect(Collectors.toList());
+                });
         }
 
         @Resource
