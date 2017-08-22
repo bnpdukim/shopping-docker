@@ -22,12 +22,12 @@ public class Order {
     @GeneratedValue
     private Long id;
 
-    private String principalId;
+    private Long userId;
     private Long productId;
     private Integer quantity;
 
-    public Order(String principalId, Long productId, Integer quantity) {
-        this.principalId = principalId;
+    public Order(Long userId, Long productId, Integer quantity) {
+        this.userId = userId;
         this.productId = productId;
         this.quantity = quantity;
     }

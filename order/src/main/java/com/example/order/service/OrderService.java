@@ -39,7 +39,7 @@ public interface OrderService {
 
         @Override
         public void create(OrderDto.New newOrder) {
-            orderRepository.save(new Order(newOrder.getPrincipalId(),newOrder.getProductId(),newOrder.getQuantity()));
+            orderRepository.save(new Order(newOrder.getUserId(),newOrder.getProductId(),newOrder.getQuantity()));
         }
 
         @Override
@@ -50,7 +50,7 @@ public interface OrderService {
                     return orders.stream()
                         .map(order->new OrderDto.Details(
                                 order.getId(),
-                                order.getPrincipalId(),
+                                order.getUserId(),
                                 order.getProductId(),
                                 order.getQuantity()))
                         .map(orderDto -> userFuture(orderDto))
@@ -84,12 +84,12 @@ public interface OrderService {
         private CompletableFuture<OrderDto.Details> userFuture(final OrderDto.Details orderDto) {
             CompletableFuture<OrderDto.Details> future = new CompletableFuture<>();
             serviceExecutor.execute(()-> {
-                ResponseEntity<UserDto.Response> responseEntity = userEndPoint.userProfile(orderDto.getOrder().getPrincipalId());
+                ResponseEntity<UserDto.Response> responseEntity = userEndPoint.userProfile(orderDto.getOrder().getUserId());
                 if( responseEntity.getStatusCode().is2xxSuccessful() ) {
                     orderDto.setUser(responseEntity.getBody());
                     future.complete(orderDto);
                 } else {
-                    log.warn("user endpoint repsonse is failed.. principalId : {}", orderDto.getOrder().getPrincipalId());
+                    log.warn("user endpoint repsonse is failed.. principalId : {}", orderDto.getOrder().getUserId());
                     future.completeExceptionally(new RuntimeException("user 정보 획득 실패"));
                 }
             });

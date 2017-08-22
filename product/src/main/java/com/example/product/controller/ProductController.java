@@ -45,7 +45,7 @@ public class ProductController {
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ProductDto.Response product(@PathVariable("id") Long productId) {
-        log.info("product id : {}", productId);
+        log.info("search product : {}", productId);
         return productService.findProduct(productId);
     }
 

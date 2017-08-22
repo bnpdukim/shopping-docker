@@ -40,6 +40,7 @@ public class UserController {
     @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public UserDto.Response userFor(@PathVariable("id") Long id) {
+        log.info("user search : {}", id);
         return userService.userFor(id);
     }
 }

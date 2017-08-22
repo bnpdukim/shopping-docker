@@ -16,12 +16,12 @@ public class OrderDto {
     @Getter
     @ToString
     public static class New {
-        private String principalId;
+        private Long userId;
         private Long productId;
         private Integer quantity;
 
-        public New(String principalId, Long productId, Integer quantity) {
-            this.principalId = principalId;
+        public New(Long userId, Long productId, Integer quantity) {
+            this.userId = userId;
             this.productId = productId;
             this.quantity = quantity;
         }
@@ -39,9 +39,9 @@ public class OrderDto {
         private ProductDto.Response product;
         private UserDto.Response user;
 
-        public Details(Long id, String principalId, Long productId, Integer quantity) {
+        public Details(Long id, Long userId, Long productId, Integer quantity) {
             this.id = id;
-            this.order = new New(principalId, productId, quantity);
+            this.order = new New(userId, productId, quantity);
         }
     }
 }
