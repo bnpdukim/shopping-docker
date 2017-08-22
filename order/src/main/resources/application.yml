@@ -25,8 +25,10 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://eureka:8761/eureka/
+    healthcheck:
+      enabled: true
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: false
     status-page-url-path: ${management.context-path}/info
     health-check-url-path: ${management.context-path}/health
 
