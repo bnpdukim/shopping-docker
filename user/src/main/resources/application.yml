@@ -28,4 +28,4 @@ eureka:
     prefer-ip-address: false
     status-page-url-path: ${management.context-path}/info
     health-check-url-path: ${management.context-path}/health
-    hostname: product
+    hostname: user
