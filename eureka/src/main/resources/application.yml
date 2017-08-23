@@ -1,6 +1,11 @@
 spring:
   profiles:
     active: local
+  cloud:
+      inetutils:
+        preferred-networks:
+          - 192.168
+          - 10.0
 
 server:
   port: 8761

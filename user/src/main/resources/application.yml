@@ -4,6 +4,11 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
+  cloud:
+      inetutils:
+        preferred-networks:
+          - 192.168
+          - 10.0
 server:
   port: 6004
   context-path: /user
